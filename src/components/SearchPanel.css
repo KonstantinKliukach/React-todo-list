@@ -1,0 +1,6 @@
+.search {
+    width: auto;
+    flex-grow: 1;
+    margin-right: 4px;
+    border-radius: 3px;
+}
