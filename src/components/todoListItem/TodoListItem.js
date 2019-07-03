@@ -4,9 +4,10 @@ import './TodoListItem.css'
 
 const TodoListItem = ({item, important = false}) => {
     const [done, changeCondition] = useState(false);
+    const [isImportant, changeImportance] = useState(important);
     let wrapperClass = 'todo-list-item-label'
 
-    if (important) {
+    if (isImportant) {
         wrapperClass += ' todo-list-item-important'
     }
 
@@ -17,7 +18,7 @@ const TodoListItem = ({item, important = false}) => {
     return (
         <span className='todo-list-item'>
             <span className={wrapperClass} onClick={()=>changeCondition(!done)}>{item}</span>
-            <button type="button" className="btn btn-outline-success btn-sm float-right">
+            <button type="button" className="btn btn-outline-success btn-sm float-right" onClick={()=>changeImportance(!isImportant)} >
                 <i className="fa fa-exclamation" />
             </button>
             <button type="button" className="btn btn-outline-danger btn-sm float-right">
