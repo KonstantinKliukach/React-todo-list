@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import './TodoListItem.css'
 
-const TodoListItem = ({item, important = false}) => {
+const TodoListItem = ({item, important = false, deleteItem}) => {
     const [done, changeCondition] = useState(false);
     const [isImportant, changeImportance] = useState(important);
     let wrapperClass = 'todo-list-item-label'
@@ -21,7 +21,7 @@ const TodoListItem = ({item, important = false}) => {
             <button type="button" className="btn btn-outline-success btn-sm float-right" onClick={()=>changeImportance(!isImportant)} >
                 <i className="fa fa-exclamation" />
             </button>
-            <button type="button" className="btn btn-outline-danger btn-sm float-right">
+            <button type="button" className="btn btn-outline-danger btn-sm float-right" onClick={deleteItem}>
                 <i className="fa fa-trash-o" />
             </button>
         </span>

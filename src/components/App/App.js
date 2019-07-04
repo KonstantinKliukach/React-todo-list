@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react';    
 
 import AppHeader from '../AppHeader/AppHeader';
 import TodoList from '../TodoList/TodoList';
@@ -14,6 +14,13 @@ const toDoListData =[
 ]
 
 const App = () => {
+    const [items, changeItems] = useState(toDoListData);
+
+    const deleteItem = (id) => {
+        const index = items.findIndex(el => el.id === id)
+        let newItems = [...items.slice(0, index), ...items.slice(index+1)]
+        changeItems(newItems)
+    }
     return (
         <div className="to-do-app">
             <AppHeader />
@@ -21,7 +28,7 @@ const App = () => {
                 <SearchPanel />
                 <Filter />
             </div>
-            <TodoList toDoListData={toDoListData}/>
+            <TodoList toDoListData={items} deleteItem={(id)=>{deleteItem(id)}}/>
         </div>
     )
 }
