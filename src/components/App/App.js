@@ -38,6 +38,14 @@ const App = () => {
         changeItems(newItems)
 
     }
+
+    const onToggleImportant = (id) => {
+        console.log(id)
+    }
+
+    const onToggleDone = (id) => {
+        console.log(id)
+    }
     
     return (
         <div className="to-do-app">
@@ -46,7 +54,7 @@ const App = () => {
                 <SearchPanel />
                 <Filter />
             </div>
-            <TodoList toDoListData={items} deleteItem={(id)=>{deleteItem(id)}}/>
+            <TodoList toDoListData={items} deleteItem={(id)=>{deleteItem(id)}} onToggleDone={onToggleDone} onToggleImportant={onToggleImportant}/>
             <AddItem addItem={(item)=>{addItem(item)}}/>
         </div>
     )

@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 
 import './TodoListItem.css'
 
-const TodoListItem = ({item, important = false, deleteItem}) => {
-    const [done, changeCondition] = useState(false);
+const TodoListItem = ({item, onToggleImportant, onToggleDone, important = false, deleteItem}) => {
+    /*const [done, changeCondition] = useState(false);
     const [isImportant, changeImportance] = useState(important);
     let wrapperClass = 'todo-list-item-label'
 
@@ -13,12 +13,14 @@ const TodoListItem = ({item, important = false, deleteItem}) => {
 
     if (done) {
         wrapperClass += ' todo-list-item-done'
-    }
+    }*/
+
+    let wrapperClass = 'todo-list-item-label'
 
     return (
         <span className='todo-list-item'>
-            <span className={wrapperClass} onClick={()=>changeCondition(!done)}>{item}</span>
-            <button type="button" className="btn btn-outline-success btn-sm float-right" onClick={()=>changeImportance(!isImportant)} >
+            <span className={wrapperClass} onClick={onToggleDone}>{item}</span>
+            <button type="button" className="btn btn-outline-success btn-sm float-right" onClick={onToggleImportant} >
                 <i className="fa fa-exclamation" />
             </button>
             <button type="button" className="btn btn-outline-danger btn-sm float-right" onClick={deleteItem}>
