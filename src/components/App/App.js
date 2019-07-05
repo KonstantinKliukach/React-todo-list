@@ -4,6 +4,7 @@ import AppHeader from '../AppHeader/AppHeader';
 import TodoList from '../TodoList/TodoList';
 import SearchPanel from '../SearchPanel/SearchPanel';
 import Filter from '../Filter/Filter'
+import AddItem from '../AddItem'
 
 import './App.css'
 
@@ -14,13 +15,30 @@ const toDoListData =[
 ]
 
 const App = () => {
+
     const [items, changeItems] = useState(toDoListData);
 
     const deleteItem = (id) => {
         const index = items.findIndex(el => el.id === id)
+
         let newItems = [...items.slice(0, index), ...items.slice(index+1)]
+
         changeItems(newItems)
     }
+
+    const addItem= (item) =>{
+
+        const newItem = {
+            item: item, 
+            important: true, 
+            id: items.length + 1,
+        }
+
+        let newItems = [...items, newItem]
+        changeItems(newItems)
+
+    }
+    
     return (
         <div className="to-do-app">
             <AppHeader />
@@ -29,6 +47,7 @@ const App = () => {
                 <Filter />
             </div>
             <TodoList toDoListData={items} deleteItem={(id)=>{deleteItem(id)}}/>
+            <AddItem addItem={(item)=>{addItem(item)}}/>
         </div>
     )
 }
