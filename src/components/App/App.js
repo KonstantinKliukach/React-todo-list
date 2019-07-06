@@ -30,7 +30,7 @@ const App = () => {
 
         const newItem = {
             item: item, 
-            important: true, 
+            important: false, 
             id: items.length + 1,
             done: false,
         }
