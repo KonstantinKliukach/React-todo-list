@@ -2,20 +2,16 @@ import React, { useState } from 'react';
 
 import './TodoListItem.css'
 
-const TodoListItem = ({item, onToggleImportant, onToggleDone, important = false, deleteItem}) => {
-    /*const [done, changeCondition] = useState(false);
-    const [isImportant, changeImportance] = useState(important);
+const TodoListItem = ({item, important, done, onToggleImportant, onToggleDone, deleteItem}) => {
     let wrapperClass = 'todo-list-item-label'
 
-    if (isImportant) {
+    if (important) {
         wrapperClass += ' todo-list-item-important'
     }
 
     if (done) {
         wrapperClass += ' todo-list-item-done'
-    }*/
-
-    let wrapperClass = 'todo-list-item-label'
+    }
 
     return (
         <span className='todo-list-item'>

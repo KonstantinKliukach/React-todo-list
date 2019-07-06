@@ -9,9 +9,9 @@ import AddItem from '../AddItem'
 import './App.css'
 
 const toDoListData =[
-    {item:'Do something cool', important: true, id:1},
-    {item:'Chill', important:false, id:2},
-    {item:'Learn something new', important:false, id:3},
+    {item:'Do something cool', important: true, id:1, done: false,},
+    {item:'Chill', important:false, id:2, done: false,},
+    {item:'Learn something new', important:false, id:3, done: false,},
 ]
 
 const App = () => {
@@ -32,6 +32,7 @@ const App = () => {
             item: item, 
             important: true, 
             id: items.length + 1,
+            done: false,
         }
 
         let newItems = [...items, newItem]
@@ -40,11 +41,17 @@ const App = () => {
     }
 
     const onToggleImportant = (id) => {
-        console.log(id)
+        const index = items.findIndex(el => el.id === id)
+        const newItems = [...items]
+        newItems[index].important = !items[index].important
+        changeItems(newItems)
     }
 
     const onToggleDone = (id) => {
-        console.log(id)
+        const index = items.findIndex(el => el.id === id)
+        const newItems = [...items]
+        newItems[index].done = !items[index].done
+        changeItems(newItems)
     }
     
     return (
