@@ -1,4 +1,4 @@
-import React, { useState } from 'react';    
+import React, { useState, useEffect } from 'react';    
 
 import AppHeader from '../AppHeader/AppHeader';
 import TodoList from '../TodoList/TodoList';
@@ -40,23 +40,31 @@ const App = () => {
 
     }
 
-    const onToggleImportant = (id) => {
+    const toggleProperty = (id, propName) => {
         const index = items.findIndex(el => el.id === id)
         const newItems = [...items]
-        newItems[index].important = !items[index].important
+        newItems[index][propName] = !items[index][propName]
         changeItems(newItems)
+
+    }
+
+    const onToggleImportant = (id) => {
+        toggleProperty(id, `important`)
     }
 
     const onToggleDone = (id) => {
-        const index = items.findIndex(el => el.id === id)
-        const newItems = [...items]
-        newItems[index].done = !items[index].done
-        changeItems(newItems)
+        toggleProperty(id, `done`)
     }
-    
+
+    let doneCount = items.filter(el => el.done).length
+
+    useEffect(() => {
+        doneCount = items.filter(el => el.done).length
+    })     
+
     return (
         <div className="to-do-app">
-            <AppHeader />
+            <AppHeader done={doneCount} total={items.length - doneCount}/>
             <div className='control-panel d-flex'>
                 <SearchPanel />
                 <Filter />
